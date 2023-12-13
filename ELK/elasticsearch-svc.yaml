@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch
+  namespace: logging
+  labels:
+    app: elasticsearch
+spec:
+  type: NodePort  # 指定服务类型为NodePort
+  selector:
+    app: elasticsearch
+  ports:
+    - port: 9200
+      targetPort: 9200  # Pod内部端口
+      name: rest
+      nodePort: 30092  # 指定节点端口，范围为30000-32767
+    - port: 9300
+      targetPort: 9300  # Pod内部端口
+      name: inter-node
+      nodePort: 30093  # 指定节点端口，范围为30000-32767

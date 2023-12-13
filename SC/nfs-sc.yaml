@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: dev-nfs-storage #无须指定namespace，所有空间都能使用，这里的名字是给POD挂载的volume.beta.kubernetes.io/storage-class名字
+provisioner: nfs-client-provisioner #这里的名称要和nfs-provisioner.yaml配置文件中的环境变量ENV中的PROVISIONER_NAME保持一致
+parameters:
+  readOnly: "false"
+reclaimPolicy: Retain ## 需要手动删除
+allowVolumeExpansion: true
+# volumeBindingMode: WaitForFirstConsumer

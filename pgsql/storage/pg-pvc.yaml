@@ -1,0 +1,17 @@
+# pvc.yaml - PersistentVolumeClaim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pgsql-pv-claim
+  labels:
+    app: postgres
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: dev-nfs-storage # 你的StorageClass名称
+
+
+  
